@@ -1,5 +1,5 @@
 # About
-Substitus is a computer program for linguistics-based word decomposition. The name is an abbreviation of the phrase substitutive segmenter which references to the used “method of squares” proposed by Joseph Harold Greenberg and independently reinvented and further developed while writing this work. Primarily, the application is designed to segment words (in arbitrary language), but it can handle any sequences. All it needs to work is a frequency dictionary of the processed language (100,000 word forms or more). You will find more details in the thesis (see the official archive, including sample data and source code).
+Substitus is a computer program for linguistics-based word decomposition. The name is an abbreviation of the phrase *substitutive segmenter* which references to the used “method of squares” proposed by Joseph Harold Greenberg and independently reinvented and further developed while writing this work. Primarily, the application is designed to segment words (in arbitrary language), but it can handle any sequences. All it needs to work is a frequency dictionary of the processed language (100,000 word forms or more). You will find more details in the thesis (see [the official archive](https://is.muni.cz/th/l3y56/?lang=en)).
 
 Substitus is implemented in Java 8 as a console application. It is distributed in a single JAR file (less than 1 MB), with no library dependencies.
 
@@ -27,7 +27,7 @@ straw berr y
 The output consists of (optional) segmentation details and two results, probabilistic and binarised. The binarised version is just a simple modification of the probabilistic one.
 
 # Frequency word list
-In order to learn grammar, Substitus needs a frequency word list. The file consist of pairs frequency – word. The columns may be divided by either spaces or tabs.
+In order to learn grammar, Substitus needs a frequency word list. The file consist of pairs *frequency – word*. The columns may be divided by either spaces or tabs.
 
 ## english.fwl
 ```
@@ -43,6 +43,63 @@ In order to learn grammar, Substitus needs a frequency word list. The file consi
 1       W.K.
 1       Zhuan
 ```
+
+# Comparison with human segmentation
+Substitus settings:
+* frequency word list: two million words, web-corpus-based
+* split function: `segmentability ≥ 0.5 || (segmentability > 0 && length (sequence) > 8)`
+
+## Czech
+Dictionary: *Retrográdní morfematický slovník češtiny* (1975)
+
+| **Human**        | **Substitus** |
+|------------------|---------------|
+| axióm            | axi-óm        |
+| bandask-a        | bandas-k-a    |
+| herald-ic-k-ý    | herald-i-ck-ý |
+| krať-as          | krať-as       |
+| kvap-i-t         | kvapit        |
+| med-ov-ý         | med-ov-ý      |
+| na-hmat-a-t      | na-hmat-a-t   |
+| ne-dut-nou-t     | nedut-nout    |
+| po-č-ín-a-t      | po-čín-a-t    |
+| pře-krás-n-ě     | pře-krásn-ě   |
+| roz-louč-e-n-í   | roz-louč-en-í |
+| říč-k-a          | říč-k-a       |
+| se-šláp-nu-t-ý   | sešláp-nut-ý  |
+| s-náš-e-n-l-iv-ě | snáše-n-liv-ě |
+| s-pj-a-t-ý       | spjat-ý       |
+| tur-ist-k-a      | tur-ist-k-a   |
+| unik-um          | u-niku-m      |
+| za-krát-k-o      | z-a-krátko    |
+| zá-lib-n-ě       | zálib-n-ě     |
+| žad-a-tel-k-a    | žadatel-k-a   |
+
+## Slovak
+Dictionary: *Morfematický slovník slovenčiny* (1999)
+
+| **Human**                   | **Substitus**        |
+|-----------------------------|----------------------|
+| **cenz**-úr-a               | cenz-úr-a            |
+| do-**modr**-a«              | do-modra             |
+| **furunkl**-ov-ý            | furunk-lový          |
+| i-**matr**-ik-ul:ov-a:ť     | imatr-ikul-ovať      |
+| **kmit**-o-**čet**-∅        | kmitoč-et            |
+| **kvant**-ov-ý              | kvant-o-v-ý          |
+| **lombard**-sk-ý            | lombard-s-k-ý        |
+| medzi-**planet**-ár:n-y     | medzi-planet-árn-y   |
+| **piet**-n-y                | piet-n-y             |
+| post-**soci**-al-ist-ic:k-ý | post-sociali-stick-ý |
+| **pot**-ent-át-∅            | potent-át            |
+| **pras**-ac-in-a            | prasa-c-i-n-a        |
+| **prav**-ič-iar-∅           | prav-ičiar           |
+| **riž**-sk-ý                | rižsk-ý              |
+| **škrob**-ár-k-a            | škrob-árka           |
+| **t[adiaľ]**«               | t-adia-ľ             |
+| **[za]bud**-n-u:t-ie        | za-bud-nu-t-i-e      |
+| za-**tín**-a:ť              | za-tín-a-ť           |
+| **zn**-ám-osť-∅             | znám-os-ť            |
+| z-**rum[en]**-ie:ť          | zru-menieť           |
 
 # The most productive tokens found by Substitus
 Here, productivity is defined as the number of word forms the token appears in, regardless their frequency. That’s why you will not find tokens like “but” here.
